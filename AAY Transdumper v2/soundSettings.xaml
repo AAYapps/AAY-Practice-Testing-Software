@@ -1,0 +1,180 @@
+﻿<Window x:Class="AAY_Transdumper_v2.soundSettings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AAY_Transdumper_v2"
+        mc:Ignorable="d"
+        Title="Sound Settings" Height="500" Width="500" MinWidth="500" MinHeight="500" MaxWidth="500" MaxHeight="500" WindowStyle="ToolWindow" ResizeMode="NoResize" Topmost="True" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,32,32" ImageSource="Resources/bg1.jpg" />
+    </Window.Background>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Start Sound" Margin="5,3"/>
+            <TextBox Name="startsoundtxt" Grid.Column="1" Margin="10,3"/>
+            <Button Name="startsound" Grid.Column="2" Content="Browse" Margin="10,3" Click="startsound_Click"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Finished Test" Margin="5,3"/>
+            <TextBox Name="testdonetxt" Grid.Column="1" Margin="10,3"/>
+            <Button Name="testdone" Grid.Column="2" Content="Browse" Margin="10,3" Click="testdone_Click"/>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Result: Passed" Margin="5,3"/>
+            <TextBox Name="resultpasstxt" Grid.Column="1" Margin="10,3"/>
+            <Button Name="resultpass" Grid.Column="2" Content="Browse" Margin="10,3" Click="resultpass_Click"/>
+        </Grid>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Result: Failed" Margin="5,3"/>
+            <TextBox Name="resultfailtxt" Grid.Column="1" Margin="10,3"/>
+            <Button Name="resultfail" Grid.Column="2" Content="Browse" Margin="10,3" Click="resultfail_Click"/>
+        </Grid>
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Next" Margin="5,3"/>
+            <TextBox Name="nexttxt" Grid.Column="1" Margin="10,3"/>
+            <Button Name="next" Grid.Column="2" Content="Browse" Margin="10,3" Click="next_Click"/>
+        </Grid>
+        <Grid Grid.Row="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Next 2" Margin="5,3"/>
+            <TextBox Name="next2txt" Grid.Column="1" Margin="10,3"/>
+            <Button Name="next2" Grid.Column="2" Content="Browse" Margin="10,3" Click="next2_Click"/>
+        </Grid>
+        <Grid Grid.Row="6">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Back" Margin="5,3"/>
+            <TextBox Name="backtxt" Grid.Column="1" Margin="10,3"/>
+            <Button Name="back" Grid.Column="2" Content="Browse" Margin="10,3" Click="back_Click"/>
+        </Grid>
+        <Grid Grid.Row="7">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Back to Test Browser" Margin="5,3"/>
+            <TextBox Name="backtomaintxt" Grid.Column="1" Margin="10,3"/>
+            <Button Name="backtomain" Grid.Column="2" Content="Browse" Margin="10,3" Click="backtomain_Click"/>
+        </Grid>
+        <Grid Grid.Row="8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Explain the answer" Margin="5,3"/>
+            <TextBox Name="explaintxt" Grid.Column="1" Margin="10,3"/>
+            <Button Name="explain" Grid.Column="2" Content="Browse" Margin="10,3" Click="explain_Click"/>
+        </Grid>
+        <Grid Grid.Row="9">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Test Select" Margin="5,3"/>
+            <TextBox Name="testselecttxt" Grid.Column="1" Margin="10,3"/>
+            <Button Name="testselect" Grid.Column="2" Content="Browse" Margin="10,3" Click="testselect_Click"/>
+        </Grid>
+        <Grid Grid.Row="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Sound Cheched" Margin="5,3"/>
+            <TextBox Name="soundcheckedtxt" Grid.Column="1" Margin="10,3"/>
+            <Button Name="soundchecked" Grid.Column="2" Content="Browse" Margin="10,3" Click="soundchecked_Click"/>
+        </Grid>
+        <Grid Grid.Row="11">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Sound Uncheched" Margin="5,3,0,3"/>
+            <TextBox Name="sounduncheckedtxt" Grid.Column="1" Margin="10,3"/>
+            <Button Name="soundunchecked" Grid.Column="2" Content="Browse" Margin="10,3" Click="soundunchecked_Click"/>
+        </Grid>
+        <Grid Grid.Row="12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Anwser" Margin="5,3"/>
+            <TextBox Name="anwsertxt" Grid.Column="1" Margin="10,3"/>
+            <Button Name="anwser" Grid.Column="2" Content="Browse" Margin="10,3" Click="anwser_Click"/>
+        </Grid>
+        <Grid Grid.Row="13">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Show Test Review" Margin="5,3,0,3"/>
+            <TextBox Name="showreviewtxt" Grid.Column="1" Margin="10,3"/>
+            <Button Name="showreview" Grid.Column="2" Content="Browse" Margin="10,3" Click="showreview_Click"/>
+        </Grid>
+
+        <StackPanel Grid.Row="14" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Name="defult" Content="Defult Sounds" Margin="8,3" Padding="10,1"/>
+            <Button Name="save" Content="Save" Margin="8,3" Padding="20,1"/>
+            <Button Name="cancel" Content="Cancel" Margin="8,3" Padding="20,1"/>
+        </StackPanel>
+
+
+
+    </Grid>
+</Window>

@@ -13,9 +13,12 @@
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +26,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,10 +36,44 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>AAYBicon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>AAY_Transdumper_v2.App</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LibVLCSharp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LibVLCSharp.0.8.1\lib\net40\LibVLCSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="LibVLCSharp.WPF, Version=0.8.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LibVLCSharp.WPF.0.8.1\lib\net461\LibVLCSharp.WPF.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop, Version=1.0.168.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -48,12 +86,44 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AppConstants.cs" />
+    <Compile Include="Converter.cs" />
+    <Compile Include="Explanation.xaml.cs">
+      <DependentUpon>Explanation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Question.cs" />
+    <Compile Include="ResultScreen.xaml.cs">
+      <DependentUpon>ResultScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Sounds.cs" />
+    <Compile Include="soundSettings.xaml.cs">
+      <DependentUpon>soundSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Test.xaml.cs">
+      <DependentUpon>Test.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TestEditor.xaml.cs">
+      <DependentUpon>TestEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="testFileItem.xaml.cs">
+      <DependentUpon>testFileItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowLoader.cs" />
+    <Page Include="BigCheckBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Explanation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -66,6 +136,26 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ResultScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="soundSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Test.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="testFileItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -85,6 +175,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -93,5 +184,104 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\bg1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16427.svg" />
+    <None Include="Resources\26025.svg" />
+    <None Include="Resources\button-21.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ARank.png" />
+    <Resource Include="Resources\BRank.png" />
+    <Resource Include="Resources\CRank.png" />
+    <Resource Include="Resources\DRank.png" />
+    <Resource Include="Resources\ERank.png" />
+    <Resource Include="Resources\FRank.png" />
+    <Resource Include="Resources\icon.gif" />
+    <Resource Include="Resources\video-pause-button.png" />
+    <Resource Include="Resources\play-button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LIGHT-OF-LIFE.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo - Copy.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo - Copy1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="AAYBicon.ico" />
+    <Resource Include="Resources\logo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Mission Clear.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Mission Clear.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\multi-plier-close-1.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\multi-plier-open-1.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Result E.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Result.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\right.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\switch-1.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\switch-3.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\switch-7.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\switch-9.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\switch-10.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\switch-16.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\switch-18.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\switch-24.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TEMP.WAV" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Wrong.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AAY audio 2.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AAY 2.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\bg1.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
+  </Target>
 </Project>

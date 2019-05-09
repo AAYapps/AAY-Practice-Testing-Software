@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +9,6 @@ namespace AAY_Transdumper_v2
     static class WindowLoader
     {
         private static List<System.Windows.Window> views = new List<System.Windows.Window>();
-
         public static void setMainWindow(System.Windows.Window window)
         {
 

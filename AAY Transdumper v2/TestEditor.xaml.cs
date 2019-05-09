@@ -240,9 +240,11 @@ namespace AAY_Transdumper_v2
             if (result != null && result == true)
             {
                 StreamWriter file = File.CreateText(save.FileName);
+                file.WriteLine("Exam Name: " + testName.Split('\\').Last());
                 foreach (Question q in AppConstants.QUESTIONS)
                 {
-                    file.WriteLine("Exam Name: ");
+                    file.WriteLine();
+                    file.WriteLine("");
                 }
                 testName = save.FileName;
                 this.Title = testName.Split('\\').Last();

@@ -250,5 +250,17 @@ namespace AAY_Transdumper_v2.Properties {
                 this["correctionOnAnswer"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
+        public float Volume {
+            get {
+                return ((float)(this["Volume"]));
+            }
+            set {
+                this["Volume"] = value;
+            }
+        }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AAY_Transdumper_v2
+namespace TestLogic
 {
     static class AppConstants
     {

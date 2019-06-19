@@ -10,6 +10,10 @@
         <ImageBrush TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,32,32" ImageSource="Resources/bg1.jpg" />
     </Window.Background>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="71*"/>
+            <ColumnDefinition Width="176*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -27,7 +31,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="0" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="2*"/>
@@ -37,7 +41,7 @@
             <TextBox Name="startsoundtxt" Grid.Column="1" Margin="10,3"/>
             <Button Name="startsound" Grid.Column="2" Content="Browse" Margin="10,3" Click="startsound_Click"/>
         </Grid>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="2*"/>
@@ -47,7 +51,7 @@
             <TextBox Name="testdonetxt" Grid.Column="1" Margin="10,3"/>
             <Button Name="testdone" Grid.Column="2" Content="Browse" Margin="10,3" Click="testdone_Click"/>
         </Grid>
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="2" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="2*"/>
@@ -57,7 +61,7 @@
             <TextBox Name="resultpasstxt" Grid.Column="1" Margin="10,3"/>
             <Button Name="resultpass" Grid.Column="2" Content="Browse" Margin="10,3" Click="resultpass_Click"/>
         </Grid>
-        <Grid Grid.Row="3">
+        <Grid Grid.Row="3" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="2*"/>
@@ -67,7 +71,7 @@
             <TextBox Name="resultfailtxt" Grid.Column="1" Margin="10,3"/>
             <Button Name="resultfail" Grid.Column="2" Content="Browse" Margin="10,3" Click="resultfail_Click"/>
         </Grid>
-        <Grid Grid.Row="4">
+        <Grid Grid.Row="4" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="2*"/>
@@ -77,7 +81,7 @@
             <TextBox Name="nexttxt" Grid.Column="1" Margin="10,3"/>
             <Button Name="next" Grid.Column="2" Content="Browse" Margin="10,3" Click="next_Click"/>
         </Grid>
-        <Grid Grid.Row="5">
+        <Grid Grid.Row="5" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="2*"/>
@@ -87,7 +91,7 @@
             <TextBox Name="next2txt" Grid.Column="1" Margin="10,3"/>
             <Button Name="next2" Grid.Column="2" Content="Browse" Margin="10,3" Click="next2_Click"/>
         </Grid>
-        <Grid Grid.Row="6">
+        <Grid Grid.Row="6" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="2*"/>
@@ -97,7 +101,7 @@
             <TextBox Name="backtxt" Grid.Column="1" Margin="10,3"/>
             <Button Name="back" Grid.Column="2" Content="Browse" Margin="10,3" Click="back_Click"/>
         </Grid>
-        <Grid Grid.Row="7">
+        <Grid Grid.Row="7" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="2*"/>
@@ -107,7 +111,7 @@
             <TextBox Name="backtomaintxt" Grid.Column="1" Margin="10,3"/>
             <Button Name="backtomain" Grid.Column="2" Content="Browse" Margin="10,3" Click="backtomain_Click"/>
         </Grid>
-        <Grid Grid.Row="8">
+        <Grid Grid.Row="8" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="2*"/>
@@ -117,7 +121,7 @@
             <TextBox Name="explaintxt" Grid.Column="1" Margin="10,3"/>
             <Button Name="explain" Grid.Column="2" Content="Browse" Margin="10,3" Click="explain_Click"/>
         </Grid>
-        <Grid Grid.Row="9">
+        <Grid Grid.Row="9" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="2*"/>
@@ -127,7 +131,7 @@
             <TextBox Name="testselecttxt" Grid.Column="1" Margin="10,3"/>
             <Button Name="testselect" Grid.Column="2" Content="Browse" Margin="10,3" Click="testselect_Click"/>
         </Grid>
-        <Grid Grid.Row="10">
+        <Grid Grid.Row="10" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="2*"/>
@@ -137,7 +141,7 @@
             <TextBox Name="soundcheckedtxt" Grid.Column="1" Margin="10,3"/>
             <Button Name="soundchecked" Grid.Column="2" Content="Browse" Margin="10,3" Click="soundchecked_Click"/>
         </Grid>
-        <Grid Grid.Row="11">
+        <Grid Grid.Row="11" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="2*"/>
@@ -147,7 +151,7 @@
             <TextBox Name="sounduncheckedtxt" Grid.Column="1" Margin="10,3"/>
             <Button Name="soundunchecked" Grid.Column="2" Content="Browse" Margin="10,3" Click="soundunchecked_Click"/>
         </Grid>
-        <Grid Grid.Row="12">
+        <Grid Grid.Row="12" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="2*"/>
@@ -157,7 +161,7 @@
             <TextBox Name="anwsertxt" Grid.Column="1" Margin="10,3"/>
             <Button Name="anwser" Grid.Column="2" Content="Browse" Margin="10,3" Click="anwser_Click"/>
         </Grid>
-        <Grid Grid.Row="13">
+        <Grid Grid.Row="13" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="2*"/>
@@ -168,7 +172,11 @@
             <Button Name="showreview" Grid.Column="2" Content="Browse" Margin="10,3" Click="showreview_Click"/>
         </Grid>
 
-        <StackPanel Grid.Row="14" Orientation="Horizontal" HorizontalAlignment="Right">
+        <StackPanel Grid.Row="14" Orientation="Horizontal" HorizontalAlignment="Left" Grid.ColumnSpan="2">
+            <Label Content="Volume" Padding="10,1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <Slider Name="Volume" VerticalAlignment="Center" Width="100" ValueChanged="Volume_ValueChanged" Maximum="1" SmallChange="0.01" LargeChange="0.1" Value="0.5" />
+        </StackPanel>
+        <StackPanel Grid.Row="14" Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1">
             <Button Name="defult" Content="Defult Sounds" Margin="8,3" Padding="10,1"/>
             <Button Name="save" Content="Save" Margin="8,3" Padding="20,1"/>
             <Button Name="cancel" Content="Cancel" Margin="8,3" Padding="20,1"/>

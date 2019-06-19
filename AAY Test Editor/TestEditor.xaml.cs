@@ -12,8 +12,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TestLogic;
 
-namespace AAY_Transdumper_v2
+namespace AAY_Test_Editor
 {
     /// <summary>
     /// Interaction logic for TestEditor.xaml
@@ -78,67 +79,66 @@ namespace AAY_Transdumper_v2
 
         private void SetQuestion(int index)
         {
+            foreach (DockPanel item in answerList.Children)
+            {
+                if (((TextBox)item.Children[2]).Text.Equals(""))
+                {
+                    MessageBox.Show("There are some choices that are still empty. ");
+                    return;
+                }
+            }
+
+            if (qIndex == AppConstants.QUESTIONS.Count)
+            {
+                AppConstants.QUESTIONS.Add(new Question());
+            }
+
+            if (qIndex > 0)
+                Previous.Visibility = Visibility.Visible;
+
             AppConstants.QUESTIONS[index].SetQuestion(question.Text);
             if (!qImage.Equals(""))
             {
-                System.Drawing.Bitmap img =
-                    (System.Drawing.Bitmap)System.Drawing.Image.
-                        FromFile(qImage);
-                AppConstants.QUESTIONS[index].SetQImage(img);
+                // TODO make sure this works
+                AppConstants.QUESTIONS[index].SetQImage(qImage);
                 AppConstants.QUESTIONS[index].SetQImageName(AppConstants.TESTSLOCATION + testName +
                     "\\IMG\\" + qImage.Substring(qImage.LastIndexOf('\\')));
                 AppConstants.QUESTIONS[index].AppendQuestion("<img src=\"" + testName + "\\IMG\\" +
                     qImage.Substring(qImage.LastIndexOf('\\')) + "\">");
             }
+            AppConstants.QUESTIONS[index].removeAllChoices();
             foreach (DockPanel item in answerList.Children)
             {
+                // TODO make sure this works
                 bool answer = (bool)((CheckBox)item.Children[0]).IsChecked;
                 char key = ((string)((Label)item.Children[1]).Content)[0];
-                CheckBox choice = new CheckBox { Content = ((TextBox)item.Children[2]).Text };
-                AppConstants.QUESTIONS[index].AddChoice(key, choice);
+                AppConstants.QUESTIONS[index].AddChoice(key, ((TextBox)item.Children[2]).Text);
                 AppConstants.QUESTIONS[index].SetChoiceTrue(key);
             }
             AppConstants.QUESTIONS[index].SetExplanation(explanation.Text + "\n");
             if (!expImage.Equals(""))
             {
-                System.Drawing.Bitmap img =
-                    (System.Drawing.Bitmap)System.Drawing.Image.
-                        FromFile(expImage);
-                AppConstants.QUESTIONS[index].SetAImage(img);
+                // TODO make sure this works
+                AppConstants.QUESTIONS[index].SetAImage(expImage);
                 AppConstants.QUESTIONS[index].SetAImageName(AppConstants.TESTSLOCATION + testName +
-                    "\\IMG\\" + qImage.Substring(qImage.LastIndexOf('\\')));
+                    "\\IMG\\" + expImage.Substring(expImage.LastIndexOf('\\')));
                 AppConstants.QUESTIONS[index].AppendExplanation("<img src=\"" + testName + "\\IMG\\" +
                     expImage.Substring(expImage.LastIndexOf('\\')) + "\">");
             }
             if (!expVideo.Equals(""))
             {
+                // TODO make sure this works
                 AppConstants.QUESTIONS[index].SetAVideoURI(AppConstants.TESTSLOCATION + testName +
-                    "\\IMG\\" + expVideo.Substring(qImage.LastIndexOf('\\')));
+                    "\\IMG\\" + expVideo.Substring(expVideo.LastIndexOf('\\')));
                 AppConstants.QUESTIONS[index].AppendExplanation("<Embed src=\"" + testName + "\\IMG\\" +
-                    expImage.Substring(expImage.LastIndexOf('\\')) + "\">");
+                    expVideo.Substring(expVideo.LastIndexOf('\\')) + "\">");
             }
         }
 
         private void Next_Click(object sender, RoutedEventArgs e)
         {
-            if (qIndex > 0)
-                Previous.Visibility = Visibility.Visible;
             if (!question.Text.Equals(""))
             {
-                foreach (DockPanel item in answerList.Children)
-                {
-                    if (((TextBox)item.Children[2]).Text.Equals(""))
-                    {
-                        MessageBox.Show("There are some choices that are still empty. ");
-                        return;
-                    }
-                }
-
-                if (qIndex == AppConstants.QUESTIONS.Count)
-                {
-                    Previous.Visibility = Visibility.Visible;
-                    AppConstants.QUESTIONS.Add(new Question());
-                }
                 SetQuestion(qIndex++);
             }
         }
@@ -219,11 +219,35 @@ namespace AAY_Transdumper_v2
             }
         }
 
+        private void Save(StreamWriter file)
+        {
+            SetQuestion(qIndex);
+            file.WriteLine("Exam Name: " + testName.Split('\\').Last());
+            int questionIndex = 0;
+            foreach (Question q in AppConstants.QUESTIONS)
+            {
+                file.WriteLine(++questionIndex + ". " + q.GetQuestion());
+                file.WriteLine();
+                int count = 0;
+                foreach (KeyValuePair<Question.Choice, bool> item in q.GetChoiceList())
+                    file.WriteLine(((char)('A' + count++)) + ". " + item.Key.getText());
+                file.WriteLine();
+                if (!explanation.Text.Equals(""))
+                {
+                    file.WriteLine("Explanation: ");
+                    file.WriteLine(q.GetExplanation());
+                }
+                file.WriteLine();
+            }
+            file.Close();
+        }
+
         private void Save_MouseUp(object sender, MouseButtonEventArgs e)
         {
             if (System.IO.File.Exists(AppConstants.TESTSLOCATION + testName + ".txt"))
             {
-
+                File.Delete(AppConstants.TESTSLOCATION + testName + ".txt");
+                Save(File.CreateText(AppConstants.TESTSLOCATION + testName + ".txt"));
             }
             else
             {
@@ -240,14 +264,9 @@ namespace AAY_Transdumper_v2
             if (result != null && result == true)
             {
                 StreamWriter file = File.CreateText(save.FileName);
-                file.WriteLine("Exam Name: " + testName.Split('\\').Last());
-                foreach (Question q in AppConstants.QUESTIONS)
-                {
-                    file.WriteLine();
-                    file.WriteLine("");
-                }
-                testName = save.FileName;
-                this.Title = testName.Split('\\').Last();
+                testName = save.FileName.Split('\\').Last().Replace(".txt", "");
+                Save(file);
+                this.Title = testName;
             }
         }
     }

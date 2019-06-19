@@ -1,17 +1,47 @@
 ﻿using System.Collections.Generic;
-using System.Windows.Controls;
 
-namespace AAY_Transdumper_v2
+namespace TestLogic
 {
     class Question
     {
+        public class Choice
+        {
+            private string text = "";
+            private bool Checked = false;
+
+            public void setChecked(bool Checked)
+            {
+                this.Checked = Checked;
+            }
+
+            public void setText(string text)
+            {
+                this.text = text;
+            }
+
+            public void appendText(string text)
+            {
+                this.text += "\n" + text;
+            }
+
+            public string getText()
+            {
+                return text;
+            }
+
+            public bool getChecked()
+            {
+                return Checked;
+            }
+        }
+
         private bool answered = false;
         private string question = "";
-        private System.Drawing.Bitmap qImage = null;
+        private string qImage = "";
         private string qImageName = "";
         private string qVideoURI = "";
-        private readonly Dictionary<char, KeyValuePair<CheckBox, bool>> answers = new Dictionary<char, KeyValuePair<CheckBox, bool>>();
-        private System.Drawing.Bitmap aImage = null;
+        private readonly Dictionary<char, KeyValuePair<Choice, bool>> answers = new Dictionary<char, KeyValuePair<Choice, bool>>();
+        private string aImage = "";
         private string aImageName = "";
         private string aVideoURI = "";
         private string explanation = "";
@@ -48,9 +78,9 @@ namespace AAY_Transdumper_v2
             this.question += "\n" + question;
         }
 
-        public System.Windows.Media.Imaging.BitmapImage GetQImage()
+        public string GetQImage()
         {
-            return Converter.BitmapToImageSource(qImage);
+            return qImage;
         }
 
         public bool CheckQImage()
@@ -58,7 +88,7 @@ namespace AAY_Transdumper_v2
             return qImage != null;
         }
 
-        public void SetQImage(System.Drawing.Bitmap qImage)
+        public void SetQImage(string qImage)
         {
             this.qImage = qImage;
         }
@@ -78,46 +108,48 @@ namespace AAY_Transdumper_v2
             this.qImageName = qImageName;
         }
 
-        public void AddChoice(char letter, CheckBox choice)
+        public void AddChoice(char letter, string choice)
         {
-            //choice.RenderTransform = new System.Windows.Media.ScaleTransform(2.0, 2.0);
-            //choice.RenderTransformOrigin = new System.Windows.Point(1,1);
-            //choice.Margin = new System.Windows.Thickness(0, 0, 200, 0);
-            choice.FontSize = 20;
-            choice.VerticalContentAlignment = System.Windows.VerticalAlignment.Center;
-            choice.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
-            //choice.Resources = new BigCheckBox();
-            answers.Add(letter, new KeyValuePair<CheckBox, bool>(choice, false));
+            Choice item = new Choice();
+            item.setText(choice);
+            answers.Add(letter, new KeyValuePair<Choice, bool>(item, false));
         }
 
         public void SetChoiceTrue(char letter)
         {
-            answers[letter] = new KeyValuePair<CheckBox, bool>(answers[letter].Key, true);
+            answers[letter] = new KeyValuePair<Choice, bool>(answers[letter].Key, true);
+        }
+
+        public void SetChoiceChecked(char letter, bool check)
+        {
+            answers[letter].Key.setChecked(check);
         }
 
         public void AppendChoice(char letter, string text)
         {
-            TextBlock temp = (TextBlock)answers[letter].Key.Content;
-            temp.Text += " " + text.TrimStart();
-            answers[letter].Key.Content = temp;
+            string temp = answers[letter].Key.getText();
+            temp += " " + text.TrimStart();
+            answers[letter].Key.appendText(temp);
         }
 
-        public List<KeyValuePair<CheckBox, bool>> GetChoiceList()
+        public void removeAllChoices()
         {
-            List<KeyValuePair<CheckBox, bool>> list = new List<KeyValuePair<CheckBox, bool>>();
-            foreach (KeyValuePair<CheckBox, bool> item in answers.Values)
+            answers.Clear();
+        }
+
+        public List<KeyValuePair<Choice, bool>> GetChoiceList()
+        {
+            List<KeyValuePair<Choice, bool>> list = new List<KeyValuePair<Choice, bool>>();
+            foreach (KeyValuePair<Choice, bool> item in answers.Values)
             {
                 list.Add(item);
             }
             return list;
         }
 
-        public System.Windows.Media.Imaging.BitmapImage GetAimage()
+        public string GetAimage()
         {
-            if (aImage != null)
-                return Converter.BitmapToImageSource(aImage);
-            else
-                return null;
+            return aImage;
         }
 
         public bool CheckAImage()
@@ -125,7 +157,7 @@ namespace AAY_Transdumper_v2
             return aImage != null;
         }
 
-        public void SetAImage(System.Drawing.Bitmap aImage)
+        public void SetAImage(string aImage)
         {
             this.aImage = aImage;
         }

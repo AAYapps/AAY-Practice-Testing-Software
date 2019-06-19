@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>98d906fe-e76d-48fa-91aa-e898c66ecc6c</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Test_Logic</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AppConstants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Question.cs" />
+  </ItemGroup>
+</Project>

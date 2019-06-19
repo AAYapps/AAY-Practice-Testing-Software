@@ -1,11 +1,22 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2035
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.452
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AAY Transdumper v2", "AAY Transdumper v2\AAY Transdumper v2.csproj", "{0CD92367-84F9-4172-AAA2-DB1C3FFCBB72}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AAY Test Editor", "AAY Test Editor\AAY Test Editor.csproj", "{2622740E-E4FC-405A-A19C-6190BC91DCD0}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Test Logic", "Test Logic\Test Logic.shproj", "{98D906FE-E76D-48FA-91AA-E898C66ECC6C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestUnitTesting", "TestUnitTesting\TestUnitTesting.csproj", "{8480AE10-33C8-4086-A9A7-FF923DC7F83C}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Test Logic\Test Logic.projitems*{0cd92367-84f9-4172-aaa2-db1c3ffcbb72}*SharedItemsImports = 4
+		Test Logic\Test Logic.projitems*{2622740e-e4fc-405a-a19c-6190bc91dcd0}*SharedItemsImports = 4
+		Test Logic\Test Logic.projitems*{98d906fe-e76d-48fa-91aa-e898c66ecc6c}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -15,6 +26,14 @@ Global
 		{0CD92367-84F9-4172-AAA2-DB1C3FFCBB72}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0CD92367-84F9-4172-AAA2-DB1C3FFCBB72}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0CD92367-84F9-4172-AAA2-DB1C3FFCBB72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2622740E-E4FC-405A-A19C-6190BC91DCD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2622740E-E4FC-405A-A19C-6190BC91DCD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2622740E-E4FC-405A-A19C-6190BC91DCD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2622740E-E4FC-405A-A19C-6190BC91DCD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8480AE10-33C8-4086-A9A7-FF923DC7F83C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8480AE10-33C8-4086-A9A7-FF923DC7F83C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8480AE10-33C8-4086-A9A7-FF923DC7F83C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8480AE10-33C8-4086-A9A7-FF923DC7F83C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

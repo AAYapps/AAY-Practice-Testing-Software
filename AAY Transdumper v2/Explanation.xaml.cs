@@ -50,7 +50,6 @@ namespace AAY_Transdumper_v2
             if (MediaPlayer.MediaPlayer == null)
                 MediaPlayer.MediaPlayer = new LibVLCSharp.Shared.MediaPlayer(core);
             MediaPlayer.MediaPlayer.Play(video);
-            volume.Value = MediaPlayer.MediaPlayer.Volume;
             play.Visibility = Visibility.Collapsed;
             pause.Visibility = Visibility.Visible;
         }
@@ -91,6 +90,7 @@ namespace AAY_Transdumper_v2
             }
             else
             {
+                MediaPlayer.MediaPlayer.Volume = (int)volume.Value;
                 MediaPlayer.MediaPlayer.Pause();
                 play.Visibility = Visibility.Visible;
                 pause.Visibility = Visibility.Collapsed;

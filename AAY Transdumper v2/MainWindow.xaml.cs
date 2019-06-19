@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TestLogic;
 
 namespace AAY_Transdumper_v2
 {
@@ -51,12 +52,7 @@ namespace AAY_Transdumper_v2
                 testBrowser.Items.Add(temp);
             }
             sounds.IsChecked = Properties.Settings.Default.Sounds;
-
-        }
-
-        private void CreateTest_Click(object sender, RoutedEventArgs e)
-        {
-            WindowLoader.createMainWindow(typeof(TestEditor));
+            Sounds.Volume(Properties.Settings.Default.Volume);
         }
     }
 }

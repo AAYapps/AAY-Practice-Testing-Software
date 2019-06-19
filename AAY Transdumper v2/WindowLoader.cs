@@ -11,7 +11,6 @@ namespace AAY_Transdumper_v2
         private static List<System.Windows.Window> views = new List<System.Windows.Window>();
         public static void setMainWindow(System.Windows.Window window)
         {
-
             if (views.Find(name => name.Equals(window)) == null)
                 views.Add(window);
         }

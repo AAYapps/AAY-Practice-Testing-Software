@@ -32,14 +32,62 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Button Name="play" Margin="5" Visibility="Collapsed" Click="Play_Click" >
-                            <Button.Background>
-                                <ImageBrush ImageSource="Resources/play-button.png"/>
-                            </Button.Background>
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Setter Property="Background">
+                                        <Setter.Value>
+                                            <ImageBrush ImageSource="Resources/play-button.png"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                <Border Background="{TemplateBinding Background}">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background">
+                                                <Setter.Value>
+                                                    <ImageBrush ImageSource="Resources/play-button-highlight.png"/>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
                         </Button>
                         <Button Name="pause" Margin="5" Visibility="Collapsed" Click="Pause_Click" >
-                            <Button.Background>
-                                <ImageBrush ImageSource="Resources/video-pause-button.png"/>
-                            </Button.Background>
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Setter Property="Background">
+                                        <Setter.Value>
+                                            <ImageBrush ImageSource="Resources/video-pause-button.png"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                <Border Background="{TemplateBinding Background}">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background">
+                                                <Setter.Value>
+                                                    <ImageBrush ImageSource="Resources/video-pause-button-highlight.png"/>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
                         </Button>
                         <Label Content="Volume" Grid.Column="1" />
                         <Slider Name="volume" Margin="10,0,0,0" Maximum="100" VerticalAlignment="Center" MinWidth="500" Value="50" Grid.Column="2" ValueChanged="Volume_ValueChanged" SmallChange="1" />

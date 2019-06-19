@@ -18,7 +18,7 @@
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>x64</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -45,13 +45,11 @@
     <StartupObject>AAY_Transdumper_v2.App</StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LibVLCSharp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LibVLCSharp.0.8.1\lib\net40\LibVLCSharp.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="LibVLCSharp, Version=3.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LibVLCSharp.3.0.2\lib\net40\LibVLCSharp.dll</HintPath>
     </Reference>
-    <Reference Include="LibVLCSharp.WPF, Version=0.8.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LibVLCSharp.WPF.0.8.1\lib\net461\LibVLCSharp.WPF.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="LibVLCSharp.WPF, Version=3.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LibVLCSharp.WPF.3.0.2\lib\net461\LibVLCSharp.WPF.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
@@ -64,6 +62,9 @@
     <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop, Version=1.0.168.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="NAudio, Version=1.9.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.1.9.0\lib\net35\NAudio.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -93,33 +94,31 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AppConstants.cs" />
-    <Compile Include="Converter.cs" />
     <Compile Include="Explanation.xaml.cs">
       <DependentUpon>Explanation.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Question.cs" />
+    <Compile Include="localsoundplayer.cs" />
     <Compile Include="ResultScreen.xaml.cs">
       <DependentUpon>ResultScreen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SoundPlayer.cs" />
     <Compile Include="Sounds.cs" />
     <Compile Include="soundSettings.xaml.cs">
       <DependentUpon>soundSettings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SoundTouch\SoundTouch.cs" />
+    <Compile Include="SoundTouch\SoundTouchInterop32.cs" />
+    <Compile Include="SoundTouch\SoundTouchInterop64.cs" />
+    <Compile Include="SoundTouch\SoundTouchProfile.cs" />
+    <Compile Include="SoundTouch\SoundTouchSettings.cs" />
+    <Compile Include="SoundTouch\VarispeedSampleProvider.cs" />
     <Compile Include="Test.xaml.cs">
       <DependentUpon>Test.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="TestEditor.xaml.cs">
-      <DependentUpon>TestEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="testFileItem.xaml.cs">
       <DependentUpon>testFileItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowLoader.cs" />
-    <Page Include="BigCheckBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Explanation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -145,10 +144,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Test.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="TestEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -190,7 +185,9 @@
   <ItemGroup>
     <None Include="Resources\16427.svg" />
     <None Include="Resources\26025.svg" />
-    <None Include="Resources\button-21.wav" />
+    <EmbeddedResource Include="Resources\button-21.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\ARank.png" />
@@ -220,46 +217,72 @@
     <None Include="Resources\Mission Clear.mp3" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Mission Clear.wav" />
+    <EmbeddedResource Include="Resources\Mission Clear.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\multi-plier-close-1.wav" />
+    <EmbeddedResource Include="Resources\multi-plier-close-1.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\multi-plier-open-1.wav" />
+    <EmbeddedResource Include="Resources\multi-plier-open-1.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Result E.wav" />
+    <EmbeddedResource Include="Resources\Result E.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Result.wav" />
+    <EmbeddedResource Include="Resources\Result.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\right.gif" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\switch-1.wav" />
+    <EmbeddedResource Include="Resources\switch-1.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\switch-3.wav" />
+    <EmbeddedResource Include="Resources\switch-3.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\switch-7.wav" />
+    <EmbeddedResource Include="Resources\switch-7.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\switch-9.wav" />
+    <EmbeddedResource Include="Resources\switch-9.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\switch-10.wav" />
+    <EmbeddedResource Include="Resources\switch-10.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\switch-16.wav" />
+    <EmbeddedResource Include="Resources\switch-16.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\switch-18.wav" />
+    <EmbeddedResource Include="Resources\switch-18.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\switch-24.wav" />
+    <EmbeddedResource Include="Resources\switch-24.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\TEMP.WAV" />
@@ -268,14 +291,30 @@
     <Resource Include="Resources\Wrong.gif" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\AAY audio 2.wav" />
+    <EmbeddedResource Include="Resources\AAY audio 2.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\AAY 2.wav" />
+    <EmbeddedResource Include="Resources\AAY 2.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\bg1.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SoundTouch_x64.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\play-button-highlight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\video-pause-button-highlight.png" />
+  </ItemGroup>
+  <Import Project="..\Test Logic\Test Logic.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AAY_Transdumper_v2"
         mc:Ignorable="d"
-        Title="Test" Height="813.231" Width="1098.739" Closing="Window_Closing">
+        Title="Test" Height="813.231" Width="1098.739" Closing="Window_Closing" WindowStartupLocation="CenterScreen">
     <Window.Background>
         <ImageBrush TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,32,32" ImageSource="Resources/bg1.jpg" />
     </Window.Background>

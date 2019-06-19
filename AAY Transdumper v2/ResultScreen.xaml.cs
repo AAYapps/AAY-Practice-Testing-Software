@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TestLogic;
 
 namespace AAY_Transdumper_v2
 {
@@ -34,11 +35,11 @@ namespace AAY_Transdumper_v2
             {
                 total++;
                 bool right = true;
-                foreach (KeyValuePair<CheckBox, bool> choice in item.GetChoiceList())
+                foreach (KeyValuePair<Question.Choice, bool> choice in item.GetChoiceList())
                 {
                     if (right)
                     {
-                        if (choice.Key.IsChecked != choice.Value)
+                        if (choice.Key.getChecked() != choice.Value)
                             right = false;
                     }
                 }
@@ -51,7 +52,6 @@ namespace AAY_Transdumper_v2
             totalText.Content = total;
             timer.Elapsed += resultCount;
             timer.Start();
-            Sounds.PlayAudio(Sounds.finishedTest);
         }
 
         private bool GradeRange(double lower, double higher)
@@ -68,34 +68,37 @@ namespace AAY_Transdumper_v2
                     {
                         grade = 'A';
                         rank.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/ARank.png"));
-                        Sounds.PlayAudio(Sounds.Passed);
                     }
                     else if (GradeRange(0.8, 0.9))
                     {
                         grade = 'B';
                         rank.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/BRank.png"));
-                        Sounds.PlayAudio(Sounds.Passed);
                     }
                     else if (GradeRange(0.7, 0.8))
                     {
                         grade = 'C';
                         rank.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/CRank.png"));
-                        Sounds.PlayAudio(Sounds.Passed);
                     }
                     else if (GradeRange(0.6, 0.7))
                     {
                         grade = 'D';
                         rank.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/DRank.png"));
-                        Sounds.PlayAudio(Sounds.Failed);
                     }
                     else if (GradeRange(0, 0.6))
                     {
                         grade = 'F';
                         rank.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/FRank.png"));
-                        Sounds.PlayAudio(Sounds.Failed);
                     }
                 });
                 timer.Stop();
+                if (GradeRange(0.7, 1.01))
+                {
+                    Sounds.PlayAudio(Sounds.Passed);
+                }
+                else
+                {
+                    Sounds.PlayAudio(Sounds.Failed);
+                }
             }
             else
             {

@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TestLogic;
 
 namespace AAY_Transdumper_v2
 {
@@ -64,7 +65,7 @@ namespace AAY_Transdumper_v2
             questionText.Text = AppConstants.QUESTIONS[index].GetQuestion();
             if (AppConstants.QUESTIONS[index].CheckQImage())
             {
-                qimg.Source = AppConstants.QUESTIONS[index].GetQImage();
+                qimg.Source = new BitmapImage(new Uri(AppConstants.QUESTIONS[index].GetQImage()));
                 qimg.Visibility = Visibility.Visible;
             }
             else
@@ -76,7 +77,7 @@ namespace AAY_Transdumper_v2
                 item.Child = null;
             }
             answerList.Children.Clear();
-            foreach (KeyValuePair<CheckBox, bool> choice in AppConstants.QUESTIONS[index].GetChoiceList())
+            foreach (KeyValuePair<Question.Choice, bool> choice in AppConstants.QUESTIONS[index].GetChoiceList())
             {
                 DockPanel answerPanel = new DockPanel
                 {
@@ -99,14 +100,29 @@ namespace AAY_Transdumper_v2
                 answerImg.Width = 16;
                 answerImg.VerticalAlignment = VerticalAlignment.Center;
                 answerImg.Name = choice.Value ? "correct" : "incorrect";
-                if ((bool)choice.Key.IsChecked || choice.Value)
+                if ((bool)choice.Key.getChecked() || choice.Value)
                     answerImg.Visibility = AppConstants.QUESTIONS[index].GetAnswered() ? Visibility.Visible : Visibility.Hidden;
                 else
                     answerImg.Visibility = Visibility.Hidden;
                 DockPanel.SetDock(answerImg, Dock.Left);                        
                 answerPanel.Children.Add(answerImg);
-                DockPanel.SetDock(choice.Key, Dock.Left);
-                answerPanel.Children.Add(choice.Key);
+                TextBlock text = new TextBlock
+                {
+                    Text = choice.Key.getText(),
+                    TextWrapping = TextWrapping.Wrap
+                };
+                CheckBox choicechk = new CheckBox
+                {
+                    Content = text,
+                    IsChecked = choice.Key.getChecked(),
+                    FontSize = 20,
+                    VerticalContentAlignment = System.Windows.VerticalAlignment.Center,
+                    HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch
+                };
+                if (AppConstants.QUESTIONS[index].GetAnswered())
+                    choicechk.IsEnabled = false;
+                DockPanel.SetDock(choicechk, Dock.Left);
+                answerPanel.Children.Add(choicechk);
                 answerList.Children.Add(view);
             }
             Explanation.Visibility = Visibility.Collapsed;
@@ -168,19 +184,19 @@ namespace AAY_Transdumper_v2
                                 {
                                     try
                                     {
-                                        System.Drawing.Bitmap img =
-                                            (System.Drawing.Bitmap)System.Drawing.Image.
-                                                FromFile(AppConstants.IMGLOCATION +
+                                        if (!questionInsert)
+                                        {
+                                            AppConstants.QUESTIONS[AppConstants.QUESTIONS.Count - 1].SetAImage(AppConstants.IMGLOCATION +
                                                     line.Substring(line.LastIndexOf('/') + 1,
                                                         line.LastIndexOf('"') -
                                                         line.LastIndexOf('/') - 1));
-                                        if (!questionInsert)
-                                        {
-                                            AppConstants.QUESTIONS[AppConstants.QUESTIONS.Count - 1].SetAImage(img);
                                         }
                                         else
                                         {
-                                            AppConstants.QUESTIONS[AppConstants.QUESTIONS.Count - 1].SetQImage(img);
+                                            AppConstants.QUESTIONS[AppConstants.QUESTIONS.Count - 1].SetQImage(AppConstants.IMGLOCATION +
+                                                    line.Substring(line.LastIndexOf('/') + 1,
+                                                        line.LastIndexOf('"') -
+                                                        line.LastIndexOf('/') - 1));
                                         }
                                     }
                                     catch (Exception e)
@@ -227,16 +243,7 @@ namespace AAY_Transdumper_v2
                                     questionInsert = false;
                                     answerInsert = true;
                                     tempLetter = ValidAnswerLetters.Where(c => c == line.ToUpper()[0]).First();
-                                    TextBlock text = new TextBlock
-                                    {
-                                        Text = line,
-                                        TextWrapping = TextWrapping.Wrap
-                                    };
-                                    CheckBox choice = new CheckBox
-                                    {
-                                        Content = text
-                                    };
-                                    AppConstants.QUESTIONS[AppConstants.QUESTIONS.Count - 1].AddChoice(line.ToUpper()[0], choice);
+                                    AppConstants.QUESTIONS[AppConstants.QUESTIONS.Count - 1].AddChoice(line.ToUpper()[0], line);
                                 }
                                 else
                                 {
@@ -284,6 +291,8 @@ namespace AAY_Transdumper_v2
             foreach (Viewbox item in answerList.Children)
             {
                 CheckBox answerCheck = (CheckBox)((DockPanel)item.Child).Children[1];
+                TextBlock text = (TextBlock)answerCheck.Content;
+                AppConstants.QUESTIONS[currentQuestion].SetChoiceChecked((text.Text.ToUpper()[0]), (bool)answerCheck.IsChecked);
                 Image img = (Image)((DockPanel)item.Child).Children[0];
                 if ((bool)answerCheck.IsChecked || img.Name.Equals("correct"))
                 {
@@ -291,6 +300,7 @@ namespace AAY_Transdumper_v2
                 }
                 answerCheck.IsEnabled = false;
             }
+
             AppConstants.QUESTIONS[currentQuestion].SetAnswered();
             Explanation.Visibility = Visibility.Visible;
             Next.Visibility = Visibility.Visible;
@@ -305,6 +315,7 @@ namespace AAY_Transdumper_v2
             }
             else
             {
+                Sounds.PlayAudio(Sounds.finishedTest);
                 WindowLoader.createMainWindow(typeof(ResultScreen), true);
                 AppConstants.QUESTIONS.Clear();
                 Close();
@@ -326,8 +337,8 @@ namespace AAY_Transdumper_v2
                 explanation.SetMediaPlayerVideo(AppConstants.QUESTIONS[currentQuestion].GetAVideoURI());
             try
             {
-                if (AppConstants.QUESTIONS[currentQuestion].GetAimage() != null)
-                    explanation.SetImage(AppConstants.QUESTIONS[currentQuestion].GetAimage());
+                if (!AppConstants.QUESTIONS[currentQuestion].GetAimage().Equals(""))
+                    explanation.SetImage(new BitmapImage(new Uri(AppConstants.QUESTIONS[currentQuestion].GetAimage())));
             }
             catch (Exception f)
             {
@@ -345,6 +356,7 @@ namespace AAY_Transdumper_v2
                 item.Child = null;
             }
             answerList.Children.Clear();
+            AppConstants.QUESTIONS.Clear();
             testClose.Invoke(this, null);
         }
     }

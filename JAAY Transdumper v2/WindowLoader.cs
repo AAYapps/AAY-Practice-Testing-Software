@@ -8,7 +8,7 @@ namespace JAAY_Transdumper_v2
 {
     static class WindowLoader
     {
-        private static List<System.Windows.Window> views = new List<System.Windows.Window>();
+        private static readonly List<System.Windows.Window> views = new List<System.Windows.Window>();
         public static void setMainWindow(System.Windows.Window window)
         {
             if (views.Find(name => name.Equals(window)) == null)

@@ -1,5 +1,7 @@
-# AAY Practice Testing Software
+# JAAY Practice Testing Software
 This project is based on the first version called AAY trandumper, and was inspired by the open source Peter Pann, JT, Delphi's Trandumper. 
+
+Update 06/25/2020: AAYapps will now be changing to JAAYapps. The reason for this change is mainly due to someone else owning a trademark of AAY. So at this point I am changing all the titles of my software to JAAY to avoid any trademark problems. JAAY stands for Just All About You.
 
 This software is designed to help with test preparation, and includes some features like:
 * Grading individual based on the amount of correct answers out of total questions

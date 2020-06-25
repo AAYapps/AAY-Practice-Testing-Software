@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="JAAY_Transdumper_v2.TestFileItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:JAAY_Transdumper_v2"
+             mc:Ignorable="d" 
+             MaxWidth="100">
+    <Grid TouchUp="Grid_TouchUp" MouseUp="Grid_MouseUp" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Width="auto" Height="auto" Grid.Row="0">
+            <Image x:Name="testIcon" Margin="0,10,0,0" Stretch="None" Source="Resources/icon.gif" />
+        </Grid>
+        <TextBlock x:Name="fileName" Text="Name" Grid.Row="1" FontSize="18" TextWrapping="Wrap" TextAlignment="Center" Foreground="#FF362121" />
+    </Grid>
+</UserControl>

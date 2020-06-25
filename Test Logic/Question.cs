@@ -38,11 +38,9 @@ namespace TestLogic
         private bool answered = false;
         private string question = "";
         private string qImage = "";
-        private string qImageName = "";
         private string qVideoURI = "";
         private readonly Dictionary<char, KeyValuePair<Choice, bool>> answers = new Dictionary<char, KeyValuePair<Choice, bool>>();
         private string aImage = "";
-        private string aImageName = "";
         private string aVideoURI = "";
         private string explanation = "";
 
@@ -85,27 +83,12 @@ namespace TestLogic
 
         public bool CheckQImage()
         {
-            return qImage != null;
+            return !qImage.Equals("");
         }
 
         public void SetQImage(string qImage)
         {
             this.qImage = qImage;
-        }
-
-        public string GetQImageName()
-        {
-            return qImageName;
-        }
-
-        public bool CheckQImageName()
-        {
-            return !qImageName.Equals("");
-        }
-
-        public void SetQImageName(string qImageName)
-        {
-            this.qImageName = qImageName;
         }
 
         public void AddChoice(char letter, string choice)
@@ -154,27 +137,12 @@ namespace TestLogic
 
         public bool CheckAImage()
         {
-            return aImage != null;
+            return !aImage.Equals("");
         }
 
         public void SetAImage(string aImage)
         {
             this.aImage = aImage;
-        }
-
-        public string GetAImageName()
-        {
-            return aImageName;
-        }
-
-        public bool CheckAImageName()
-        {
-            return !aImageName.Equals("");
-        }
-
-        public void SetAImageName(string aImageName)
-        {
-            this.aImageName = aImageName;
         }
 
         public string GetExplanation()
@@ -197,6 +165,11 @@ namespace TestLogic
             return qVideoURI;
         }
 
+        public bool CheckQVideoURI()
+        {
+            return !qVideoURI.Equals("");
+        }
+
         public void SetQVideoURI(string qVideoURI)
         {
             this.qVideoURI = qVideoURI;
@@ -205,6 +178,11 @@ namespace TestLogic
         public string GetAVideoURI()
         {
             return aVideoURI;
+        }
+
+        public bool CheckAVideoURI()
+        {
+            return !aVideoURI.Equals("");
         }
 
         public void SetAVideoURI(string aVideoURI)
